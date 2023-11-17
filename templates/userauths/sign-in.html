@@ -1,0 +1,126 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}
+    Войти
+{% endblock title %}
+{% block body %}
+<div class="wrappers" style="padding-top: 0 !important; min-height: 100% !important">
+    <div class="fullcontentr">
+        <!-- Пост -->
+        <div class="page-reg">
+            <!--
+            <ul class="logreg">
+            <li><a href="/"><img src="/wp-content/uploads/img/dor.png" alt="Дорамы" width="205" height="38"></a></li>
+            </ul>
+            -->
+
+            <ul class="new-logreg">
+                <li><a href="{% url 'core:index' %}"><span>DoramaVision</span></a></li>
+            </ul>
+
+            <div class="login" id="theme-my-login">
+                <form name="loginform" id="loginform" action="" method="post">
+                    {% csrf_token %}
+                    <p>
+                        <b>Введите email</b>
+                        <label for="user_login"></label>
+                        <input type="text" id="user_login" class="input" value="" size="20" required name="email">
+                    </p>
+                    <p>
+                        <b>Пароль</b>
+                        <label for="user_pass"></label>
+                        <input required type="password" id="user_pass" class="input" value="" size="20" name="password">
+                    </p>
+
+                    <input type="hidden" name="_wp_original_http_referer" value="">
+
+                    <p class="forgetmenot">
+                        <input checked="checked" class="box-foxi" name="rememberme" type="checkbox" id="rememberme"
+                               value="forever">
+                        <label for="rememberme">Запомнить меня</label>
+                    </p>
+
+
+                    <input id="check" name="proverka" style="display:none;" type="text" value="">
+                    <p class="submitl-regs">
+                        <input type="submit" name="wp-submit-proverka" id="wp-submit" value="Войти"
+                               onclick="document.getElementById('check').value = 'polesecret';">
+                        <input type="hidden" name="redirect_to" value="https://doramy.club/wp-admin/">
+                        <input type="hidden" name="instance" value="">
+                        <input type="hidden" name="action" value="login">
+                    </p>
+
+                </form>
+                <div style="clear:both;margin-bottom: 10px;"></div>
+                <ul class="tml-action-links">
+                    <li><a href="{% url 'userauths:sign-up' %}" rel="nofollow">Регистрация</a></li>
+                    <li><a href="{% url 'core:index' %}" rel="nofollow">Вернуться на главную</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+        <script type="text/javascript">
+        let sbmt = document.getElementById('submit'),
+                    npt = document.createElement('input'), d = new Date(), __ksinit = function () {
+                        sbmt.parentNode.insertBefore(npt, sbmt);
+                    };
+                npt.value = d.getUTCDate() + '' + (d.getUTCMonth() + 1) + 'uniq9065';
+                npt.name = 'ksbn_code';
+                npt.type = 'hidden';
+                sbmt.onmousedown = __ksinit;
+                sbmt.onkeypress = __ksinit;
+            } catch (e) {
+            }
+	function wp_attempt_focus() {
+		setTimeout(function () {
+			try {
+				d = document.getElementById('user_login');
+				d.value = '';
+				d.focus();
+			} catch (e) {
+			}
+		}, 200);
+	}
+
+	wp_attempt_focus();
+	if (typeof wpOnload == 'function') wpOnload()
+    (function () {
+	let js = "window['__CF$cv$params']={r:'827104302b6f78cd',t:'MTcwMDE1MTE1NS40NzYwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";
+	let _0xh = document.createElement('iframe');
+	_0xh.height = 1;
+	_0xh.width = 1;
+	_0xh.style.position = 'absolute';
+	_0xh.style.top = 0;
+	_0xh.style.left = 0;
+	_0xh.style.border = 'none';
+	_0xh.style.visibility = 'hidden';
+	document.body.appendChild(_0xh);
+
+	function handler() {
+		let _0xi = _0xh.contentDocument || _0xh.contentWindow.document;
+		if (_0xi) {
+			let _0xj = _0xi.createElement('script');
+			_0xj.innerHTML = js;
+			_0xi.getElementsByTagName('head')[0].appendChild(_0xj);
+		}
+	}
+
+	if (document.readyState !== 'loading') {
+		handler();
+	} else if (window.addEventListener) {
+		document.addEventListener('DOMContentLoaded', handler);
+	} else {
+		let prev = document.onreadystatechange || function () {
+		};
+		document.onreadystatechange = function (e) {
+			prev(e);
+			if (document.readyState !== 'loading') {
+				document.onreadystatechange = prev;
+				handler();
+			}
+		};
+	}
+})();
+    let isDarkMode = false;
+{% endblock body %}

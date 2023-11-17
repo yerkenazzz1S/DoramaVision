@@ -1,0 +1,187 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}
+    Регистрация
+{% endblock title %}
+{% block head %}
+    <link rel='stylesheet' href='{% static 'css/for-sign-up.css' %}' type='text/css' media='all'>
+{% endblock head %}
+{% block body %}
+    <div class="wrappers" style="padding-top: 0 !important; min-height: 100% !important">
+        <div class="fullcontentr">
+        <!-- Пост -->
+        <div class="page-reg">
+            <ul class="new-logreg">
+                <li><a href="{% url 'core:index' %}"><span>DoramaVision</span></a></li>
+            </ul>
+
+            <div class="login" id="theme-my-login">
+                <p class="message">Зарегистрироваться на сайте</p>
+                <form name="registerform" id="registerform" action="" method="post">
+                    {% csrf_token %}
+                    <p>
+                        <label>Логин отображается при добавлении комментариев, поэтому не нужно вводить в качестве
+                            логина свой номер телефона!</label>
+                        <br>
+                        <label for="user_login"><b>Логин</b> <i>(минимут 3 символа англ. Без точек)</i></label>
+                        <label></label>
+                        {{ form.username }}
+                    </p>
+                    <p>
+                        <label for="user_email"><b>E-mail</b> <i>(нужен для подтверждения)</i></label>
+                        {{ form.email }}
+                    <div id="sose" style="display:none;">
+                        <span>Почта введена неправильно.</span> <i class="i-Email">Что с ней не так?</i>
+                        <div class="Email-list" style="display:none;">
+                            <i>Скорее всего ошибка после <b>символа @</b>. Вот список правильных и доступных для
+                                регистрации email:</i>
+                            <ul class="ulemail">
+                                <li>@mail.ru</li>
+                                <li>@gmail.com</li>
+                                <li>@yandex.ru</li>
+                                <li>@ukr.net</li>
+                                <li>@internet.ru</li>
+                                <li>@bk.ru</li>
+                                <li>@inbox.ru</li>
+                                <li>@icloud.com</li>
+                                <li>@zschocho.cz</li>
+                                <li>@abv.bg</li>
+                                <li>@vk.com</li>
+                                <li>@list.ru</li>
+                                <li>@rambler.ru</li>
+                                <li>@live.ru</li>
+                                <li>@i.ua</li>
+                                <li>@ya.ru</li>
+                                <li>@inbox.lv</li>
+                                <li>@yahoo.de</li>
+                                <li>@yahoo.com</li>
+                                <li>@yahoo.it</li>
+                                <li>@mail.ua</li>
+                                <li>@web.de</li>
+                                <li>@yandex.kz</li>
+                                <li>@tut.by</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p><label for="pass1"><b>Пароль</b> <i>(минимум 6 символов)</i></label>
+                        <label></label>
+                        {{ form.password1 }}
+                    </p>
+                    <p><label for="pass2"><b>Подтвердить пароль</b></label>
+                        {{ form.password2 }}
+                    <p id="reg_passmail"></p>
+
+                    <p class="submitl-regs">
+                        <input type="submit" name="wp-submit-proverka-reg" id="wp-submit" value="Регистрация"
+                               onclick="document.getElementById('check').value = 'polesecret';">
+                        <input type="hidden" name="redirect_to"
+                               value="">
+                        <input type="hidden" name="instance" value="">
+                        <input type="hidden" name="action" value="register">
+                        <span id="email-submit" style="display:none;">Некорректный email</span>
+                    </p>
+                </form>
+                <div style="clear:both;margin-bottom: 10px;"></div>
+                <ul class="tml-action-links">
+                    <li><a href="{% url 'userauths:sign-up' %}" rel="nofollow">Войти</a></li>
+                    <li><a href="{% url 'core:index' %}" rel="nofollow">Вернуться на главную</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+    try {
+                let sbmt = document.getElementById('submit'),
+                    npt = document.createElement('input'), d = new Date(), __ksinit = function () {
+                        sbmt.parentNode.insertBefore(npt, sbmt);
+                    };
+                npt.value = d.getUTCDate() + '' + (d.getUTCMonth() + 1) + 'uniq9065';
+                npt.name = 'ksbn_code';
+                npt.type = 'hidden';
+                sbmt.onmousedown = __ksinit;
+                sbmt.onkeypress = __ksinit;
+            } catch (e) {
+            }
+        const EMAIL_REGEXP = /^[^ ]+\@(?=mail.ru$|ukr.net$|tut.by$|ya.ru$|yandex.kz$|web.de$|mail.ua$|yahoo.it$|yahoo.com$|yahoo.de$|inbox.lv$|i.ua$|live.ru$|rambler.ru$|list.ru$|vk.com$|abv.bg$|zschocho.cz$|icloud.com$|inbox.ru$|bk.ru$|internet.ru$|gmail.com$|yandex.ru$|\s)/i;
+                        const input = document.getElementById('user_email');
+                        const submitq = document.getElementById('wp-submit');
+                        const semail = document.getElementById('email-submit');
+                        $('#email-submit').on('click', function () {
+                            $('#sose').show(100);
+                        });
+                        $('.i-Email').on('click', function (events) {
+                            $('.Email-list').slideToggle(100);
+                        });
+
+                        function isEmailValid(value) {
+                            return EMAIL_REGEXP.test(value);
+                        }
+
+                        function onInput() {
+                            if (isEmailValid(input.value)) {
+                                input.style.borderColor = 'green';
+                                $('#wp-submit').show(100);
+                                $('#email-submit').hide(100);
+                                $('#sose').hide(100);
+                            } else {
+                                input.style.borderColor = 'red';
+                                $('#wp-submit').hide(0);
+                                $('#email-submit').show(0);
+                            }
+                        }
+
+                        input.addEventListener('input', onInput);
+        function wp_attempt_focus() {
+            setTimeout(function () {
+                try {
+                    d = document.getElementById('user_login');
+                    d.value = '';
+                    d.focus();
+                } catch (e) {
+                }
+            }, 200);
+        }
+
+        wp_attempt_focus();
+        if (typeof wpOnload == 'function') wpOnload()
+        (function () {
+        let js = "window['__CF$cv$params']={r:'827104302b6f78cd',t:'MTcwMDE1MTE1NS40NzYwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";
+        let _0xh = document.createElement('iframe');
+        _0xh.height = 1;
+        _0xh.width = 1;
+        _0xh.style.position = 'absolute';
+        _0xh.style.top = 0;
+        _0xh.style.left = 0;
+        _0xh.style.border = 'none';
+        _0xh.style.visibility = 'hidden';
+        document.body.appendChild(_0xh);
+
+        function handler() {
+            let _0xi = _0xh.contentDocument || _0xh.contentWindow.document;
+            if (_0xi) {
+                let _0xj = _0xi.createElement('script');
+                _0xj.innerHTML = js;
+                _0xi.getElementsByTagName('head')[0].appendChild(_0xj);
+            }
+        }
+
+        if (document.readyState !== 'loading') {
+            handler();
+        } else if (window.addEventListener) {
+            document.addEventListener('DOMContentLoaded', handler);
+        } else {
+            let prev = document.onreadystatechange || function () {
+            };
+            document.onreadystatechange = function (e) {
+                prev(e);
+                if (document.readyState !== 'loading') {
+                    document.onreadystatechange = prev;
+                    handler();
+                }
+            };
+        }
+    })();
+    let isDarkMode = false;
+    </script>
+{% endblock body %}

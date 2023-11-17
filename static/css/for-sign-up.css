@@ -1,0 +1,47 @@
+#user_email {
+    margin-bottom: 5px !important
+}
+
+#sose span {
+    color: red
+}
+
+.Email-list {
+    overflow: hidden;
+    margin-top: 5px;
+    background: #ffeac2;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.Email-list i {
+    color: #333;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.ulemail {
+    margin-top: 5px;
+}
+
+.ulemail li {
+    width: 50%;
+    float: left;
+}
+
+.i-Email {
+    cursor: pointer;
+    border-bottom: 1px solid #e8b9c0;
+    color: #bd7480;
+    font-style: normal;
+}
+
+#email-submit {
+    float: right;
+    background: #ec7263;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 25px 0;
+    border-radius: 5px;
+}
