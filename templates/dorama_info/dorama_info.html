@@ -1,0 +1,532 @@
+﻿{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}{{ dorama.name }}{% endblock title %}
+{% block content %}
+    <article class="text" itemscope="" itemtype="">
+        <section class="post-singl">
+            <h1 itemprop="name">{{ dorama.name }}({{ dorama.release_year }})</h1>
+
+            <div class="img-poster">
+                <img class="s-poster" itemprop="image"
+                     src="{{ dorama.poster.url }}" alt="{{ dorama.name }}">
+            </div>
+            <table class="table-tag">
+                <tbody>
+                <tr>
+                    <td><u>{{ dorama.country }}, {{ dorama.release_year }}</u></td>
+                </tr>
+                <tr>
+                    <td><u>
+                        {% for genre in dorama.genres.all %}
+                            {{ genre.genre_name }}
+                            {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </u></td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table-sin">
+                <tbody class="tbody-sin">
+                <tr>
+                    <td class="s1">Время:</td>
+                    <td>{{ dorama.duration_minutes }}</td>
+                </tr>
+                <tr>
+                    <td class="s1">Сериал:</td>
+                    <td>{{ dorama.duration_episodes }} серии</td>
+                </tr>
+                <tr>
+                    <td class="s1">Статус:</td>
+                    <td><span class="o-sratus">{{ dorama.status }}</span></td>
+                </tr>
+                <tr>
+                    <td class="s1">Озвучка:</td>
+                    <td><i class="s2"><b>{{ dorama.duration_episodes|add:"-1" }}</b> серия</i></td>
+                </tr>
+                <tr>
+                    <td class="s1">Субтитры:</td>
+                    <td><i class="s2"><b>{{ dorama.duration_episodes }}</b> серия</i></td>
+                </tr>
+                <tr class="linkpost">
+                    <td class="s1">Канал:</td>
+                    <td><span><a href="/">Netflix</a></span></td>
+                </tr>
+                <tr class="linkpost">
+                    <td class="s1">Озвучка:</td>
+                    <td><span>{{ dorama.translations }}</span></td>
+                </tr>
+                <tr class="person">
+                    <td colspan="2"><i class="sp1">В ролях:</i><span class="tdlinks">
+                        {% for actor in dorama.actors.all %}
+                        <a
+                            href="/"
+                            data-img="https://doramy.club/wp-content/uploads/2022/06/kim-yon-de-340x470.jpg">{{ actor.actor_name }}</a>
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    </span><span
+                            class="tdlinks"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <meta itemprop="dateCreated" content="2023-11-16T01:08:40">
+        <meta itemprop="inLanguage" content="ru">
+        <div class="description">
+            <div class="infotext" itemprop="description">
+                <p>{{ dorama.description }}</p>
+            </div>
+        </div>
+    {% if dorama.country|lower == 'корея' %}
+        <div class="infos"><span>Серии в Корее выходят по средам и четвергам</span></div>
+    {% endif %}
+        <noindex>
+            <div class="player">
+                <div class="videoclub">
+                    <div class="tabs">
+                        <li>Дорама</li>
+                    </div>
+                    <div class="container">
+                        <div class="box">
+                            <script type="text/javascript"> uvk.show([
+                                'Озвучка', 'Субтитры',], [
+                                ["kodik.cc%2Fseria%2F1229054%2F7efdd70a7d04b9b51ff9f109cd46d42c%2F720p", "kodik.cc%2Fseria%2F1229431%2F5c0df7472aa983a7509fe96ca62832c6%2F720p", "kodik.cc%2Fseria%2F1232496%2Fe1a592cc00483703156fc6918d95269c%2F720p", "kodik.cc%2Fseria%2F1232497%2F520be76e2c563f82b375559121b4340e%2F720p", "kodik.cc%2Fseria%2F1234979%2F13ffd85221c003e5e9363997f94bddff%2F720p",], ["kodik.cc%2Fseria%2F1229181%2F641e82d79b92388b3259312cadc87efe%2F720p", "kodik.cc%2Fseria%2F1229810%2F45cca2ccd343ebf5f25f66a5153dfed8%2F720p", "kodik.cc%2Fseria%2F1232377%2Fa36ba894ec7b2e15d6ce0aefb3768218%2F720p", "kodik.cc%2Fseria%2F1232573%2F4c3c1d9798e7d894e838f22bd13e6d70%2F720p",],]);</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </noindex>
+        <div class="polosa-pl"></div>
+        <div class="rt-bl">
+            <em>Рейтинг дорамы</em>
+            <div class="post-ratings">
+                <div itemprop="aggregateRating" itemscope="" itemtype="https://schema.org/AggregateRating">
+                    <div class="zvezu">
+                        <img src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_on.svg" alt="" class="post-ratings-image"><img
+                            src="img/star/rating_half.svg" alt="" class="post-ratings-image"></div>
+                    <meta itemprop="worstRating" content="1">
+                    <meta itemprop="bestRating" content="10">
+                    <div class="unit-rating">
+                        <span itemprop="ratingValue">9.6</span>
+                    </div>
+                    <div class="ocenki">Оценок: <span itemprop="ratingCount">468</span></div>
+                    <span style="display:none;" itemprop="itemReviewed">Луна, которая восходит днем</span>
+                </div>
+            </div>
+            <script>
+                $('.post-ratings-image').on('click', function () {
+                    $('.post-ratings').fadeOut(0);
+                    $('.rt-bl').append('<i>Оставить оценку могут только</i> <i>зарегистрированные пользователи</i>');
+                })
+            </script>
+        </div>
+
+        <script async="" src="share2/share.js"></script>
+        <div class="soc">
+            <div class="ya-share2" data-shape="round" data-services="vkontakte,odnoklassniki,twitter,telegram"
+                 data-counter=""></div>
+        </div>
+        <div class="pepost">
+            <div class="carou-in owl-carousel" id="owl-perelink">
+                <div class='carou-item-wr'><a href="40863-otlichnyj-den-chtoby-stat-sobakoj.html"><img
+                        src="wp-content/uploads/2023/10/otlichnyj-den-%E2%80%A6y-stat-sobakoj-340x470.jpg"
+                        alt="Отличный день, чтобы стать собакой">
+                    <div class='pe-title'>Отличный день, чтобы стать собакой</div>
+                </a></div>
+            </div>
+        </div>
+        <script>
+            reyting = document.querySelector('.unit-rating span').innerHTML;
+            if (reyting > 8.9) {
+                $('.unit-rating span').css("background-color", "#84c140");
+            } else if (reyting > 8) {
+                $('.unit-rating span').css("background-color", "#a8ca60");
+            } else if (reyting > 7.4) {
+                $('.unit-rating span').css("background-color", "#c4b434");
+            } else if (reyting > 6.7) {
+                $('.unit-rating span').css("background-color", "#e8c812");
+            } else if (reyting < 6.6) {
+                $('.unit-rating span').css("background-color", "#f26739");
+            }
+        </script>
+        <div class="comment-full">
+            <div class="otz"><span>Оставить отзыв</span></div>
+            <div id="comments">
+                <div class="comm-reg">
+                    <p>Отзывы к данной дораме уже закрыты
+                        <br>Извините за неудобство</p>
+                </div>
+                <div class="spoyler"><span>Осторожно! могут быть спойлеры.</span></div>
+                <ul class="commentlist">
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">nurwin134</div>
+                                <div class="ct-ti">16 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-524393">
+                                <p>Пока что мне интересно) я на 5 серии, можно посмотреть рекомендууюю😍</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Famulan7</div>
+                                <div class="ct-ti">15 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523978">
+                                <p>Ух, вот это наконец то новый виток в дорамах! И актеры и сценарий огонь! Ждём
+                                    серий!!!!</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">illiminatt</div>
+                                <div class="ct-ti">15 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523933">
+                                <p>Мне понравилось,смотрю 2 дня. Дорама кажется многообещающей. Буду с
+                                    нетерпением ждать новые серии!</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">illiminatt</div>
+                                <div class="ct-ti">15 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523931">
+                                <p>Yula.goncharowaa чем-то похоже на новинку Этот роман-форм мажор.</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Melesa</div>
+                                <div class="ct-ti">13 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523691">
+                                <p>Мне нравится 😊 🥰</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Knw1x</div>
+                                <div class="ct-ti">13 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523648">
+                                <p>Оооо классно 😍😍😍</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Qazwsxcde109573</div>
+                                <div class="ct-ti">13 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523616">
+                                <p>Мне очень понравилось 🥰<br>
+                                    Жду следующий серии</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Yula.goncharowaa</div>
+                                <div class="ct-ti">13 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523536">
+                                <p>wero4ka4, подскажите на какие дорамы похоже ?</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Leisamka</div>
+                                <div class="ct-ti">12 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523423">
+                                <p>Топчик! Не скажу, что актеры любимые, но классно передают атмосферу и сюжет
+                                    отличный</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">KDoramy</div>
+                                <div class="ct-ti">12 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523417">
+                                <p>Мне очень зашло озвучка топ</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Ilali</div>
+                                <div class="ct-ti">12 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523361">
+                                <p>Мне бы хотелось с этим сюжетом чисто историческую часть. Она круче, чем
+                                    реальность. Там больше эмоций и атмосфера ауффф</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Bin20</div>
+                                <div class="ct-ti">12 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523324">
+                                <p>К моему удивлению дорама очень даже ничего.. Ёндэ не плохо играет ему идёт
+                                    исторический образ .. Пара хорошая надеюсь не испортят развитие ..</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Miss Min</div>
+                                <div class="ct-ti">11 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523178">
+                                <p>Очень даже не плохо</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Kracotka</div>
+                                <div class="ct-ti">11 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523168">
+                                <p>Очень захватывающая дорама 🤩🤩🤩<br>
+                                    Как же интересно-что же дальше будет!!??🤔<br>
+                                    Даже без перемоток смотрела,тк очень сильно интересно..</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">Lissa89008</div>
+                                <div class="ct-ti">11 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523161">
+                                <p>Ну что за несправедливость только я закончила смотреть с субтитрами как
+                                    добавили с озвучкой а стоит ли теперь смотреть если уже знаю что там
+                                    было.</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">alex89</div>
+                                <div class="ct-ti">11 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523123">
+                                <p>А слабо вселить духа в уже вселённого в тело духа? Даёшь матрёшку по
+                                    корейски! :)))</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">soulalchemy13</div>
+                                <div class="ct-ti">11 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523119">
+                                <p>Огромное спасибо за озвучку!!!!❤️ Ждала с огромным нетерпением)))))</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">A.L.E.N.A.74</div>
+                                <div class="ct-ti">11 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523085">
+                                <p>С интересом начала смотреть данную дораму. Нравится актёр Ким Ён Дэ. У него
+                                    есть что то магнетическое и притягательное в актёрской игре. И сюжет
+                                    интересный, и развитие событий. Буду ждать озвучку дальше.</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser even thread-even depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">alya_a0</div>
+                                <div class="ct-ti">11 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-523074">
+                                <p>Понравилась, особенно музыкальное сопровождение!</p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
+                        <div class="comment clearfix">
+                            <div class="otz-line">
+                                <div class="ct-author">BlumeN</div>
+                                <div class="ct-ti">10 ноября 2023</div>
+                            </div>
+                            <div class="ct-text clearfix" id="comment-522876">
+                                <p>wero4ka4, :-)))) Как я вас обожаю(без сарказма)!Ваши комментарии всегда
+                                    поднимают настроение.</p>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="vse-otz"></div>
+                <center>
+                    <div class="list-com-hid">Все комментарии</div>
+                </center>
+                <script>$('.list-com-hid').on('click', function () {
+                    $('.list-com-hid').fadeOut(0);
+                    $('.vse-otz').append('<center><i>Зарегистрируйтесь, чтобы посмотреть все отзывы</i></center>');
+                })</script>
+            </div>
+        </div>
+    </article>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="gtag/js?id=G-WW5PJNYGKR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-WW5PJNYGKR');
+    </script>
+    <div class="stat">
+        <!--LiveInternet counter-->
+        <script type="text/javascript">
+            document.write("<a href='//www.liveinternet.ru/click' " +
+                "target=_blank><img src='//counter.yadro.ru/hit?t45.2;r" +
+                escape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
+                    ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ?
+                        screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
+                ";" + Math.random() +
+                "' alt='' title='LiveInternet' " +
+                "border='0' width='31' height='31'><\/a>")
+        </script><!--/LiveInternet-->
+    </div>
+    </footer>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var ratingsL10n = {
+            "plugin_url": "https:\/\/doramy.club\/wp-content\/plugins\/wp-postratings",
+            "ajax_url": "https:\/\/doramy.club\/wp-admin\/admin-ajax.php",
+            "text_wait": "Please rate only 1 post at a time.",
+            "image": "stars_crystal",
+            "image_ext": "gif",
+            "max": "10",
+            "show_loading": "0",
+            "show_fading": "0",
+            "custom": "0"
+        };
+        var ratings_mouseover_image = new Image();
+        ratings_mouseover_image.src = "/img/star/rating_over.svg";
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='wp-content/plugins/wp-postratings/postratings-js.js'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var gidurl = {
+            "url": "https:\/\/doramy.club\/wp-admin\/admin-ajax.php",
+            "nonce": "5e7669dbf5",
+            "postId": "41198"
+        };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='wp-content/themes/doramy/js/comm.js?v=2'></script>
+    <script>(function () {
+        var js = "window['__CF$cv$params']={r:'82710437fa3378cd',t:'MTcwMDE1MTE1Ni42NTMwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";
+        var _0xh = document.createElement('iframe');
+        _0xh.height = 1;
+        _0xh.width = 1;
+        _0xh.style.position = 'absolute';
+        _0xh.style.top = 0;
+        _0xh.style.left = 0;
+        _0xh.style.border = 'none';
+        _0xh.style.visibility = 'hidden';
+        document.body.appendChild(_0xh);
+
+        function handler() {
+            var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;
+            if (_0xi) {
+                var _0xj = _0xi.createElement('script');
+                _0xj.innerHTML = js;
+                _0xi.getElementsByTagName('head')[0].appendChild(_0xj);
+            }
+        }
+
+        if (document.readyState !== 'loading') {
+            handler();
+        } else if (window.addEventListener) {
+            document.addEventListener('DOMContentLoaded', handler);
+        } else {
+            var prev = document.onreadystatechange || function () {
+            };
+            document.onreadystatechange = function (e) {
+                prev(e);
+                if (document.readyState !== 'loading') {
+                    document.onreadystatechange = prev;
+                    handler();
+                }
+            };
+        }
+    })();</script>
+{% endblock content %}
+<!-- Dynamic page generated in 0.068 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2023-11-16 18:42:13 -->
+
+<!-- super cache -->

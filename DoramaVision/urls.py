@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('user/', include('userauths.urls')),
+    path('dorama_info/', include('dorama_info.urls'))
 ]
 
 
