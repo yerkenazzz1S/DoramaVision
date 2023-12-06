@@ -31,14 +31,9 @@
                             <div class="svg-img"><img src="{% static 'img/dor.png' %}" alt="Дорамы"></div>
                             <ul class="drop m3">
                                 <li><a href="{% url 'core:index' %}">Все дорамы</a></li>
-                                <li><a href="/">Новинки</a></li>
-                                <li class="fs-logo"><a rel="nofollow" href="/">Фильмы</a></li>
-                                <li class="fs-logo"><a rel="nofollow" href="/">Сериалы</a></li>
-                                <li><a href="/">Корейские</a></li>
-                                <li><a href="/">Китайские</a></li>
-                                <li><a href="/">Японские</a></li>
-                                <li><a href="/">Тайские</a></li>
-                                <li><a href="/">Тайваньские</a></li>
+                                {% for country in all_country %}
+                                    <li><a href="{% url 'core:dorama-country' dorama_country_slug=country.slug %}">{{ country.country_name }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -50,9 +45,6 @@
                                onfocus="if(this.value==='Поиск...') this.value='';">
                         <input class="art-search-button" value="" type="submit">
                     </form>
-                </div>
-                <div class="navi-m">
-                    <a href="/" class="navi-svg"></a>
                 </div>
                 <div class="search-clik">
                     <li class="search-item" title=""><span><i class="fa s-icon"></i></span></li>
@@ -83,67 +75,12 @@
         <!--слайдер-->
         <div class="slids">
             <div class="carou-in owl-carousel" id="owl-carou">
-                <div class="carou-item-wr"><a href="41198-luna-kotoraya-vosxodit-dnem.html"><img
-                        src="wp-content/uploads/2023/11/luna-kotoraya-vosxodit-dnem-340x470.jpg" alt="">
-                    <div class="tc-title">Луна, которая восходит днем</div>
-                    <div class="s-average">9.59</div>
+                {% for dorama in dorama_the_best %}
+                <div class="carou-item-wr"><a href="{% url 'dorama_info:dorama-info' dorama_name_slug=dorama.slug %}"><img
+                    src="{{ dorama.poster.url }}" alt="">
+                    <div class="pe-title">{{ dorama.name }}</div>
                 </a></div>
-                <div class="carou-item-wr"><a href="41410-zvukovaya-konfeta-tvoj-zvuk-kotoryj-napolnyaet-menya.html"><img
-                        src="wp-content/uploads/2023/11/zvukovaya-konfeta-tvoj-zvuk-kotoryj-napolnyaet-menya-340x470.jpg"
-                        alt="">
-                    <div class="tc-title">Звуковая конфета: Твой звук, ...</div>
-                    <div class="s-average">9.25</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="41311-istoriya-dvorca-kunnin.html"><img
-                        src="wp-content/uploads/2023/11/istoriya-dvorca-kunnin-340x470.jpg" alt="">
-                    <div class="tc-title">История дворца Куньнин</div>
-                    <div class="s-average">9.42</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="35190-koshka-i-rybka.html"><img
-                        src="wp-content/uploads/2023/02/koshka-i-rybka-340x470.jpg" alt="">
-                    <div class="tc-title">Кошка и рыбка</div>
-                    <div class="s-average">8.97</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="41240-lyubov-eto-panaceya.html"><img
-                        src="wp-content/uploads/2023/11/lyubov-eto-panaceya-340x470.jpg" alt="">
-                    <div class="tc-title">Любовь &#8212; это панацея</div>
-                    <div class="s-average">9.27</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="40863-otlichnyj-den-chtoby-stat-sobakoj.html"><img
-                        src="wp-content/uploads/2023/10/otlichnyj-den-%E2%80%A6y-stat-sobakoj-340x470.jpg" alt="">
-                    <div class="tc-title">Отличный день, чтобы стать ...</div>
-                    <div class="s-average">9.34</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="40413-devyat-pravednikov.html"><img
-                        src="wp-content/uploads/2023/09/devyat-pravednikov-340x470.jpg" alt="">
-                    <div class="tc-title">Девять праведников</div>
-                    <div class="s-average">9.38</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="40871-trefy-i-chervy.html"><img
-                        src="wp-content/uploads/2023/10/trefy-i-chervy1-340x470.jpg" alt="">
-                    <div class="tc-title">Мистер и Миссис Чэнь</div>
-                    <div class="s-average">9.41</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="41116-moya-silnaya-devushka.html"><img
-                        src="wp-content/uploads/2023/10/moya-silnaya-devushka1-340x470.jpg" alt="">
-                    <div class="tc-title">Моя сильная девушка</div>
-                    <div class="s-average">9.82</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="40311-yuzhnyj-veter-znaet-moyo-nastroenie.html"><img
-                        src="wp-content/uploads/2023/09/yuzhnyj-veter-%E2%80%A6oyo-nastroenie-340x470.jpg" alt="">
-                    <div class="tc-title">Южный ветер знает моё ...</div>
-                    <div class="s-average">9.34</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="41145-kogda-ya-vernus-ty-dolzhen-budesh-sdelat-mnogoe.html"><img
-                        src="wp-content/uploads/2023/10/kogda-ya-vernus-ty-dolzhen-budesh-sdelat-mnogoe-340x470.jpg" alt="">
-                    <div class="tc-title">Когда я вернусь, ты должен ...</div>
-                    <div class="s-average">8.44</div>
-                </a></div>
-                <div class="carou-item-wr"><a href="41194-svadebnaya-bitva.html"><img
-                        src="wp-content/uploads/2023/10/svadebnaya-bitva-340x470.jpg" alt="">
-                    <div class="tc-title">Свадебная битва</div>
-                    <div class="s-average">9.18</div>
-                </a></div>
+                {% endfor %}
             </div>
         </div>
         <!--home-->
@@ -154,53 +91,33 @@
                         <div class="menu-links">
                             <ul>
                                 <li><a class="mobglav" href="{% url 'core:index' %}">Главная</a></li>
-                                <li class="mobl2"><a href="/">Фильмы</a></li>
-                                <li class="mobl2"><a href="/">Сериалы</a></li>
+                                {% for status in all_status %}
+                                    <li class="mobl2"><a href="{% url 'core:dorama-status' dorama_status_slug=status.slug %}">{{ status.status_name }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="menu-drop">
                             <div class="new-knop">
                                 <div rel='m1' class="knop m1">Жанры</div>
-                                <div rel='m2' class="knop m2">Года</div>
+                                <div rel='m2' class="knop m2">Страны</div>
+                                <div rel='m3' class="knop m3">Переводы</div>
                             </div>
                             <ul class="drop m1">
-                                <li><a href="/">Детектив</a></li>
-                                <li><a href="/">Драма</a></li>
-                                <li><a href="/">Комедия</a></li>
-                                <li><a href="/">Криминал</a></li>
-                                <li><a href="/">Мелодрама</a></li>
-                                <li><a href="/">Мистика</a></li>
-                                <li><a href="/">Музыка</a></li>
-                                <li><a href="/">Приключения</a></li>
-                                <li><a href="/">Триллер</a></li>
-                                <li><a href="/">Ужасы</a></li>
-                                <li><a href="/">Фантастика</a></li>
-                                <li><a href="/">Фэнтези</a></li>
-                                <li><a href="/">Боевик</a></li>
-                                <li><a href="/">Боевые иск.</a></li>
-                                <li><a href="/">Военный</a></li>
-                                <li><a href="/">Исторический</a></li>
-                                <li><a href="/">Спорт</a></li>
-                                <li><a href="/">Ток-шоу</a></li>
-                                <li><a href="/">Школа</a></li>
-                                <li><a href="/">Мини-дорамы</a></li>
+                                {% for genre in all_genres %}
+                                    <li><a href="{% url 'core:dorama_genre' dorama_genre_slug=genre.slug %}">{{ genre.genre_name }}</a></li>
+                                {% endfor %}
                             </ul>
                             <ul class="drop m2">
-                                <li><a href="/">2023</a></li>
-                                <li><a href="/">2022</a></li>
-                                <li><a href="/">2021</a></li>
-                                <li><a href="/">2020</a></li>
-                                <li><a href="/">2019</a></li>
-                                <li><a href="/">2018</a></li>
-                                <li><a href="/">2017</a></li>
-                                <li><a href="/">2016</a></li>
-                                <li><a href="/">2015</a></li>
-                                <li><a href="/">2014</a></li>
-                                <li><a href="/">2013</a></li>
-                                <li><a href="/">2012</a></li>
+                                {% for country in all_country %}
+                                    <li><a href="{% url 'core:dorama-country' dorama_country_slug=country.slug %}">{{ country.country_name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="drop m3">
+                                {% for translate in all_translates %}
+                                    <li><a href="{% url 'core:dorama-translate' dorama_translate_slug=translate.slug %}">{{ translate.translate_name }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
-                        <div class="top-club"><a href="/">Топ</a></div>
                     </nav>
                 </div>
                 {% block content %}{% endblock content %}
@@ -221,134 +138,22 @@
                     </div>
 
                     <!--меню -->
-                    <div class="menu_sid">
-                        <span class="menu-title">Дорамы:</span>
-                        <ul class="menu_m_links">
-                            <li><a rel="nofollow" href="/">Корейские</a></li>
-                            <li><a rel="nofollow" href="/">Китайские</a></li>
-                            <li><a rel="nofollow" href="/">Японские</a></li>
-                            <li><a rel="nofollow" href="/">Тайские</a></li>
-                            <li><a rel="nofollow" href="/">Тайваньские</a></li>
-                        </ul>
-                        <ul class="menu_m_links2">
-                            <li><a rel="nofollow" href="/">Новинки</a></li>
-                            <li><a rel="nofollow" href="/">Лакорны</a></li>
-                            <li><a rel="nofollow" href="/">С озвучкой</a></li>
-                            <li><a rel="nofollow" href="/">С субтитрами</a></li>
-                            <li><a rel="nofollow" href="/">Актеры</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="block-doram">
-                        <span class="title-block"><a href="serialy/luchshie-doramy.html">Популярные сериалы</a></span>
-                        <div class="carou-in owl-carousel" id="sid-ser">
-                            <div class="carou-item-wr"><a href="16065-lyublyu-tebya-takoj-kakaya-ty-est-2.html"><img
-                                src="wp-content/uploads/2019/12/lyublyu-tebya-takoj-340x470.jpg" alt="">
-                                <div class="pe-title">Люблю тебя такой, какая ты ...</div>
-                                <div class="s-average">8.59</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="715-skandal-v-songyungvane.html"><img
-                                src="wp-content/uploads/2017/06/skandal-v-songyungvane-340x470.jpg" alt="">
-                                <div class="pe-title">Скандал в Сонгюнгване</div>
-                                <div class="s-average">9.12</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="4486-1-vozvrashhenie.html"><img
-                                src="wp-content/uploads/2018/01/vozvrashhenie-340x470.jpg" alt="">
-                                <div class="pe-title">Возвращение</div>
-                                <div class="s-average">7.72</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="660-shoumen.html"><img
-                                src="wp-content/uploads/2017/06/shoumen-340x470.jpg" alt="">
-                                <div class="pe-title">Шоумен</div>
-                                <div class="s-average">8.95</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="937-lyubov-skvoz-tysyacheletie.html"><img
-                                src="wp-content/uploads/2017/07/lyubov-skvoz-tysyacheletie-340x470.jpg" alt="">
-                                <div class="pe-title">Любовь сквозь тысячелетие</div>
-                                <div class="s-average">7.86</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="679-1-svet-luny-ocherchennyj-oblakom.html"><img
-                                src="wp-content/uploads/2017/06/lunnyj-svet-340x470.jpg" alt="">
-                                <div class="pe-title">Свет луны, очерченный облаком</div>
-                                <div class="s-average">9.17</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="17910-sladkaya-istoriya-lyubvi.html"><img
-                                src="wp-content/uploads/2020/04/sladkaya-istoriya-lyubvi-340x470.jpg" alt="">
-                                <div class="pe-title">Сладкая история любви | ...</div>
-                                <div class="s-average">8.98</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="21710-1-elis.html"><img
-                                src="wp-content/uploads/2020/08/elis-340x470.jpg" alt="">
-                                <div class="pe-title">Элис</div>
-                                <div class="s-average">9.06</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="939-ledyanaya-fantaziya.html"><img
-                                src="wp-content/uploads/2017/06/ledyanaya-fantaziya-340x470.jpg" alt="">
-                                <div class="pe-title">Ледяная фантазия</div>
-                                <div class="s-average">8.31</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="172-1-dorama-chelovek-so-zvezdy.html"><img
-                                src="wp-content/uploads/2017/04/chelovek-so-zvezdy-340x470.jpg" alt="">
-                                <div class="pe-title">Человек со звезды</div>
-                                <div class="s-average">7.82</div>
-                            </a></div>
-                        </div>
-                    </div>
-                    <div class="block-doram">
-                        <span class="title-block">Популярные фильмы</span>
-                        <div class="carou-in owl-carousel" id="sid-film">
-                            <div class="carou-item-wr"><a href="31391-kogda-gasnet-svet.html"><img
-                                src="wp-content/uploads/2022/05/kogda-gasnet-svet-340x470.jpg" alt="">
-                                <div class="pe-title">Когда гаснет свет</div>
-                                <div class="s-average">9.65</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="8315-antologiya.html"><img
-                                src="wp-content/uploads/2018/09/antologiya-340x470.jpg" alt="">
-                                <div class="pe-title">Антология</div>
-                                <div class="s-average">8.68</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="13718-mirnaya-zhizn-bratev.html"><img
-                                src="wp-content/uploads/2019/09/mirnaya-zhizn-bratev-340x470.jpg" alt="">
-                                <div class="pe-title">Мирная жизнь братьев</div>
-                                <div class="s-average">9.05</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="7283-dotyanutsya-do-tebya.html"><img
-                                src="wp-content/uploads/2018/07/dotyanutsya-do-tebya.jpg" alt="">
-                                <div class="pe-title">Дотянуться до тебя / От меня ...</div>
-                                <div class="s-average">8.99</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="32654-moj-prizrachnyj-sosed.html"><img
-                                src="wp-content/uploads/2022/08/moj-prizrachnyj-sosed-340x470.jpg" alt="">
-                                <div class="pe-title">Мой призрачный сосед</div>
-                                <div class="s-average">7.94</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="23715-umozaklyucheniya.html"><img
-                                src="wp-content/uploads/2020/12/umozaklyucheniya-340x470.jpg" alt="">
-                                <div class="pe-title">Умозаключения криминолога ...</div>
-                                <div class="s-average">9.14</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="11296-dnevnik-durnushki.html"><img
-                                src="wp-content/uploads/2019/04/dnevnik-durnushki-340x470.jpg" alt="">
-                                <div class="pe-title">Дневник дурнушки</div>
-                                <div class="s-average">8.45</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="11368-38-ya-parallel.html"><img
-                                src="wp-content/uploads/2019/03/38-ya-parallel-340x470.jpg" alt="">
-                                <div class="pe-title">38-я параллель</div>
-                                <div class="s-average">9.39</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="12279-serdechko.html"><img
-                                src="wp-content/uploads/2019/06/serdechko-340x470.jpg" alt="">
-                                <div class="pe-title">Сердечко</div>
-                                <div class="s-average">9.5</div>
-                            </a></div>
-                            <div class="carou-item-wr"><a href="19938-tigr-skazka-starogo-oxotnika.html"><img
-                                src="wp-content/uploads/2020/05/tigr-340x470.jpg" alt="">
-                                <div class="pe-title">Тигр: Сказка старого охотника</div>
-                                <div class="s-average">9.26</div>
-                            </a></div>
-                        </div>
-                    </div>
+                    <div class="profi_block" style="margin-top: 12px">
+    <div class="">
+        <div class="otz"><span>Рекомендация дорамы</span></div>
+        <div id="comments">
+            <div id="respond" class="comment-respond">
+                <form id="commentForm" action="{% url 'core:get_dorama_slug' %}" method="post" class="comment-form">
+                    {% csrf_token %}
+                    <textarea placeholder="Введите запрос сюда..." name="comment" id="comment" tabindex="2" onclick="clearBackground()"></textarea>
+                    <p class="form-submit">
+                        <input id="submit" name="submit" type="submit" value="Получить дораму">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
                     <div class="sb_block_kanal">
                         <ul class="ul_kanal">
                             <li><a href="/">
@@ -370,6 +175,28 @@
                                 <div class="kanal-img"><img src="{% static 'img/kanal/kbs2.png' %}" alt=""></div>
                                 <span class="kanal-title">KBS2</span></a></li>
                         </ul>
+                    </div>
+                    <div class="block-doram">
+                        <span class="title-block">Дорамы которые выходят</span>
+                        <div class="carou-in owl-carousel" id="sid-ser">
+                            {% for dorama in dorama_ongoing %}
+                            <div class="carou-item-wr"><a href="{% url 'dorama_info:dorama-info' dorama_name_slug=dorama.slug %}"><img
+                                src="{{ dorama.poster.url }}" alt="">
+                                <div class="pe-title">{{ dorama.name }}</div>
+                            </a></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="block-doram">
+                        <span class="title-block">Дорамы которые вышли</span>
+                        <div class="carou-in owl-carousel" id="sid-film">
+                            {% for dorama in dorama_released %}
+                            <div class="carou-item-wr"><a href="{% url 'dorama_info:dorama-info' dorama_name_slug=dorama.slug %}"><img
+                                src="{{ dorama.poster.url }}" alt="">
+                                <div class="pe-title">{{ dorama.name }}</div>
+                            </a></div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -415,7 +242,7 @@
         </div>
     </footer>
     <script>
-        try {
+    try {
                 let sbmt = document.getElementById('submit'),
                     npt = document.createElement('input'), d = new Date(), __ksinit = function () {
                         sbmt.parentNode.insertBefore(npt, sbmt);

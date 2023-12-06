@@ -1,15 +1,135 @@
 import csv
 import os
-
+import joblib
+import numpy as np
+import pandas as pd
+import nltk
+from nltk.stem import WordNetLemmatizer
 from django.conf import settings
 from django.core.files import File
+from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from dorama_info import models
 
 
+def get_dorama_slug(requests):
+    def get_dorama(query):
+        count_vectorizer = joblib.load(os.path.join(settings.BASE_DIR, 'core\\pkl\\count_vectorizer_model.pkl'))
+        count_matrix = joblib.load(os.path.join(settings.BASE_DIR, 'core\\pkl\\count_matrix_model.pkl'))
+
+        csv_file_path = os.path.join(settings.BASE_DIR, 'dorama_info.csv')  # Укажите путь к вашему датасету
+        df = pd.read_csv(csv_file_path)
+
+        def lemmatize_text(text):
+            lemmatizer = WordNetLemmatizer()
+            words = nltk.word_tokenize(text)
+            return ' '.join([lemmatizer.lemmatize(w) for w in words])
+
+        def jaccard_similarity(query, matrix):
+            query_vector = count_vectorizer.transform([query])
+
+            # Преобразуем вектор запроса и матрицу признаков в множества
+            query_set = set(query_vector.indices)
+            matrix_set = set(matrix.indices)
+
+            # Вычисляем сходство Жаккара
+            intersection = len(query_set.intersection(matrix_set))
+            union = len(query_set.union(matrix_set))
+
+            return intersection / union if union != 0 else 0
+
+        lemmatized_query = lemmatize_text(query)
+
+        jaccard_similarities = [jaccard_similarity(lemmatized_query, row) for row in count_matrix]
+
+        top_index = np.argmax(jaccard_similarities)
+        recommended_slug = df['slug'].iloc[top_index]
+        return recommended_slug
+
+    if requests.method == 'POST':
+        comment_text = requests.POST.get('comment', '')
+        # Обработайте comment_text и получите slug (замените этот код на свою логику)
+        slug = get_dorama(comment_text)
+        dorama = get_object_or_404(models.Dorama, slug=slug)
+        similar_dorama = models.Dorama.objects.filter(genres__in=dorama.genres.all()).exclude(id=dorama.id).distinct()[:8]
+
+        context = {
+            'dorama': dorama,
+            'similar_dorama': similar_dorama
+        }
+        return render(requests, 'dorama_info/dorama_info.html', context)
+    else:
+        return render(requests, 'core/index.html')
+
+
 def index(requests):
-    return render(requests, 'core/index.html')
+    doramas = models.Dorama.objects.all()
+    paginator = Paginator(doramas, 10)
+
+    page_number = requests.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj
+    }
+    return render(requests, 'core/index.html', context)
+
+
+def get_genre(requests, dorama_genre_slug):
+    genre = get_object_or_404(models.DoramaGenre, slug=dorama_genre_slug)
+    dorama_list = genre.dorama_set.all().order_by('-release_year')
+    paginator = Paginator(dorama_list, 10)
+
+    page_number = requests.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj
+    }
+    return render(requests, 'core/index.html', context)
+
+
+def get_translate(requests, dorama_translate_slug):
+    translate = get_object_or_404(models.DoramaTranlate, slug=dorama_translate_slug)
+    dorama_list = translate.dorama_set.all().order_by('-release_year')
+    paginator = Paginator(dorama_list, 10)
+
+    page_number = requests.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj
+    }
+    return render(requests, 'core/index.html', context)
+
+
+def get_country(requests, dorama_country_slug):
+    country = get_object_or_404(models.DoramaCountry, slug=dorama_country_slug)
+    dorama_list = country.dorama_set.all().order_by('-release_year')
+    paginator = Paginator(dorama_list, 10)
+
+    page_number = requests.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj
+    }
+    return render(requests, 'core/index.html', context)
+
+
+def get_status(requests, dorama_status_slug):
+    status = get_object_or_404(models.DoramaStatus, slug=dorama_status_slug)
+    dorama_list = status.dorama_set.all().order_by('-release_year')
+    paginator = Paginator(dorama_list, 10)
+
+    page_number = requests.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj
+    }
+    return render(requests, 'core/index.html', context)
 
 
 def load_data(requests):
@@ -25,7 +145,6 @@ def load_data(requests):
                 # Если существует, используем его
                 genre = existing_genre
             else:
-                # В противном случае, создаем новый объект
                 genre, created = models.DoramaGenre.objects.get_or_create(
                     genre_name=row['genre_name'],
                     slug=row['genre_slug']
@@ -101,7 +220,7 @@ def load_data(requests):
 
                     # Обработка и добавление статуса
             translate, _ = models.DoramaTranlate.objects.get_or_create(translate_name=row['translate'])
-            dorama.translate = translate
+            dorama.translations = translate
 
             # Обработка и добавление статуса
             status, _ = models.DoramaStatus.objects.get_or_create(status_name=row['status'])

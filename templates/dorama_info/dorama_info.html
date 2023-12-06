@@ -42,11 +42,11 @@
                 </tr>
                 <tr>
                     <td class="s1">Озвучка:</td>
-                    <td><i class="s2"><b>{{ dorama.duration_episodes|add:"-1" }}</b> серия</i></td>
+                    <td><i class="s2"><b>{{ dorama.duration_episodes|add:"-1" }}</b> серии</i></td>
                 </tr>
                 <tr>
                     <td class="s1">Субтитры:</td>
-                    <td><i class="s2"><b>{{ dorama.duration_episodes }}</b> серия</i></td>
+                    <td><i class="s2"><b>{{ dorama.duration_episodes }}</b> серии</i></td>
                 </tr>
                 <tr class="linkpost">
                     <td class="s1">Канал:</td>
@@ -88,16 +88,14 @@
                     </div>
                     <div class="container">
                         <div class="box">
-                            <script type="text/javascript"> uvk.show([
-                                'Озвучка', 'Субтитры',], [
-                                ["kodik.cc%2Fseria%2F1229054%2F7efdd70a7d04b9b51ff9f109cd46d42c%2F720p", "kodik.cc%2Fseria%2F1229431%2F5c0df7472aa983a7509fe96ca62832c6%2F720p", "kodik.cc%2Fseria%2F1232496%2Fe1a592cc00483703156fc6918d95269c%2F720p", "kodik.cc%2Fseria%2F1232497%2F520be76e2c563f82b375559121b4340e%2F720p", "kodik.cc%2Fseria%2F1234979%2F13ffd85221c003e5e9363997f94bddff%2F720p",], ["kodik.cc%2Fseria%2F1229181%2F641e82d79b92388b3259312cadc87efe%2F720p", "kodik.cc%2Fseria%2F1229810%2F45cca2ccd343ebf5f25f66a5153dfed8%2F720p", "kodik.cc%2Fseria%2F1232377%2Fa36ba894ec7b2e15d6ce0aefb3768218%2F720p", "kodik.cc%2Fseria%2F1232573%2F4c3c1d9798e7d894e838f22bd13e6d70%2F720p",],]);</script>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/rDdH6CMACdU?si=pk7TH_QBXbDhXzzg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
             </div>
         </noindex>
         <div class="polosa-pl"></div>
-        <div class="rt-bl">
+        {% comment %}<div class="rt-bl">
             <em>Рейтинг дорамы</em>
             <div class="post-ratings">
                 <div itemprop="aggregateRating" itemscope="" itemtype="https://schema.org/AggregateRating">
@@ -127,20 +125,22 @@
                     $('.rt-bl').append('<i>Оставить оценку могут только</i> <i>зарегистрированные пользователи</i>');
                 })
             </script>
-        </div>
+        </div>{% endcomment %}
 
-        <script async="" src="share2/share.js"></script>
+{#        <script async="" src="share2/share.js"></script>#}
         <div class="soc">
             <div class="ya-share2" data-shape="round" data-services="vkontakte,odnoklassniki,twitter,telegram"
                  data-counter=""></div>
         </div>
         <div class="pepost">
             <div class="carou-in owl-carousel" id="owl-perelink">
-                <div class='carou-item-wr'><a href="40863-otlichnyj-den-chtoby-stat-sobakoj.html"><img
-                        src="wp-content/uploads/2023/10/otlichnyj-den-%E2%80%A6y-stat-sobakoj-340x470.jpg"
-                        alt="Отличный день, чтобы стать собакой">
-                    <div class='pe-title'>Отличный день, чтобы стать собакой</div>
+                {% for dorama in similar_dorama %}
+                <div class='carou-item-wr'><a href="{% url 'dorama_info:dorama-info' dorama_name_slug=dorama.slug %}"><img
+                        src="{{ dorama.poster.url }}"
+                        alt="{{ dorama.name }}">
+                    <div class='pe-title'>{{ dorama.name }}</div>
                 </a></div>
+            {% endfor %}
             </div>
         </div>
         <script>
@@ -157,280 +157,23 @@
                 $('.unit-rating span').css("background-color", "#f26739");
             }
         </script>
-        <div class="comment-full">
+        {% comment %}<div class="comment-full">
             <div class="otz"><span>Оставить отзыв</span></div>
             <div id="comments">
-                <div class="comm-reg">
-                    <p>Отзывы к данной дораме уже закрыты
-                        <br>Извините за неудобство</p>
+                <div id="respond" class="comment-respond">
+                    <form action="https://doramy.club/wp-comments-post.php" method="post" class="comment-form">
+                        <textarea placeholder="О выходе серий не спрашивайте. Спойлеры не пишите." name="comment"
+                                  id="comment" tabindex="2"
+                                  onclick="document.getElementById('comment').style.backgroundImage='none';"></textarea>
+                        <p class="form-submit">
+                            <input id="submit" name="submit" type="submit" value="Добавить отзыв">
+                            <input type="hidden" name="comment_post_ID" value="41285" id="comment_post_ID">
+                            <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+                        </p>
+                    </form>
                 </div>
-                <div class="spoyler"><span>Осторожно! могут быть спойлеры.</span></div>
-                <ul class="commentlist">
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">nurwin134</div>
-                                <div class="ct-ti">16 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-524393">
-                                <p>Пока что мне интересно) я на 5 серии, можно посмотреть рекомендууюю😍</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Famulan7</div>
-                                <div class="ct-ti">15 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523978">
-                                <p>Ух, вот это наконец то новый виток в дорамах! И актеры и сценарий огонь! Ждём
-                                    серий!!!!</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">illiminatt</div>
-                                <div class="ct-ti">15 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523933">
-                                <p>Мне понравилось,смотрю 2 дня. Дорама кажется многообещающей. Буду с
-                                    нетерпением ждать новые серии!</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">illiminatt</div>
-                                <div class="ct-ti">15 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523931">
-                                <p>Yula.goncharowaa чем-то похоже на новинку Этот роман-форм мажор.</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Melesa</div>
-                                <div class="ct-ti">13 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523691">
-                                <p>Мне нравится 😊 🥰</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Knw1x</div>
-                                <div class="ct-ti">13 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523648">
-                                <p>Оооо классно 😍😍😍</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Qazwsxcde109573</div>
-                                <div class="ct-ti">13 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523616">
-                                <p>Мне очень понравилось 🥰<br>
-                                    Жду следующий серии</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Yula.goncharowaa</div>
-                                <div class="ct-ti">13 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523536">
-                                <p>wero4ka4, подскажите на какие дорамы похоже ?</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Leisamka</div>
-                                <div class="ct-ti">12 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523423">
-                                <p>Топчик! Не скажу, что актеры любимые, но классно передают атмосферу и сюжет
-                                    отличный</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">KDoramy</div>
-                                <div class="ct-ti">12 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523417">
-                                <p>Мне очень зашло озвучка топ</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Ilali</div>
-                                <div class="ct-ti">12 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523361">
-                                <p>Мне бы хотелось с этим сюжетом чисто историческую часть. Она круче, чем
-                                    реальность. Там больше эмоций и атмосфера ауффф</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Bin20</div>
-                                <div class="ct-ti">12 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523324">
-                                <p>К моему удивлению дорама очень даже ничего.. Ёндэ не плохо играет ему идёт
-                                    исторический образ .. Пара хорошая надеюсь не испортят развитие ..</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Miss Min</div>
-                                <div class="ct-ti">11 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523178">
-                                <p>Очень даже не плохо</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Kracotka</div>
-                                <div class="ct-ti">11 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523168">
-                                <p>Очень захватывающая дорама 🤩🤩🤩<br>
-                                    Как же интересно-что же дальше будет!!??🤔<br>
-                                    Даже без перемоток смотрела,тк очень сильно интересно..</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">Lissa89008</div>
-                                <div class="ct-ti">11 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523161">
-                                <p>Ну что за несправедливость только я закончила смотреть с субтитрами как
-                                    добавили с озвучкой а стоит ли теперь смотреть если уже знаю что там
-                                    было.</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">alex89</div>
-                                <div class="ct-ti">11 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523123">
-                                <p>А слабо вселить духа в уже вселённого в тело духа? Даёшь матрёшку по
-                                    корейски! :)))</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">soulalchemy13</div>
-                                <div class="ct-ti">11 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523119">
-                                <p>Огромное спасибо за озвучку!!!!❤️ Ждала с огромным нетерпением)))))</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">A.L.E.N.A.74</div>
-                                <div class="ct-ti">11 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523085">
-                                <p>С интересом начала смотреть данную дораму. Нравится актёр Ким Ён Дэ. У него
-                                    есть что то магнетическое и притягательное в актёрской игре. И сюжет
-                                    интересный, и развитие событий. Буду ждать озвучку дальше.</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser even thread-even depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">alya_a0</div>
-                                <div class="ct-ti">11 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-523074">
-                                <p>Понравилась, особенно музыкальное сопровождение!</p>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="comment byuser odd alt thread-odd thread-alt depth-1">
-                        <div class="comment clearfix">
-                            <div class="otz-line">
-                                <div class="ct-author">BlumeN</div>
-                                <div class="ct-ti">10 ноября 2023</div>
-                            </div>
-                            <div class="ct-text clearfix" id="comment-522876">
-                                <p>wero4ka4, :-)))) Как я вас обожаю(без сарказма)!Ваши комментарии всегда
-                                    поднимают настроение.</p>
-
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="vse-otz"></div>
-                <center>
-                    <div class="list-com-hid">Все комментарии</div>
-                </center>
-                <script>$('.list-com-hid').on('click', function () {
-                    $('.list-com-hid').fadeOut(0);
-                    $('.vse-otz').append('<center><i>Зарегистрируйтесь, чтобы посмотреть все отзывы</i></center>');
-                })</script>
             </div>
-        </div>
+        </div>{% endcomment %}
     </article>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
